@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta property="og:title" content="猜數字" />
+	<meta property="og:description" content="一個人設定數字作為謎底，另一方猜。每猜一個數，出數者就要根據這個數字給出提示，直到猜中為止。" />
+	<meta property="og:locale" content="zh_TW" />
+	<meta property="og:type" content="website" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/guess-the-number.css">
+    <link href="https://fonts.googleapis.com/css?family=Acme|Volkhov" rel="stylesheet">
+    <title>猜數字</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row text-center">
+            <div class="col-xl-3 text-center" style="padding-top: 30px">
+                <div id="diffchoose">
+                    <label class="container">簡單
+                        <input type="radio"  name="radio" class="dif" value="0">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">中等
+                        <input type="radio" checked="checked" name="radio" class="dif" value="1">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">困難
+                        <input type="radio" name="radio" class="dif" value="2">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">專家
+                        <input type="radio" name="radio" class="dif" value="3">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-xl-6" style="right: 65px; font-family: Acme!important;">
+                <h2>
+                    我猜一個數字介於
+                </h2>
+                <h1>1 到 <span id="max">100</span> 之間</h1>
+                <h3 >
+                    有十次的機會讓您猜<br>
+                    你能知道是什麼數字嗎？
+                </h3>
+            </div>
+            <div class="col-xl-3 hbox">
+                <h2>顯示提示</h2>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        <div class="text-center" style="margin-left: -120px">
+            <a id="resetbtn" class="btn btn-warning">重置</a>
+        </div>
+        <div class="d-block mx-auto">
+            <div class="row">
+                <div id="guesspanel" class="blocks col-xl-4 text-center">
+
+                    <h2>猜  <span id="guesses" class="badge" style="margin-bottom: 5px">0</span></h2>
+                    <div class="gcontent">
+
+                    </div>
+                </div>
+                <div id="mainpanel" class="blocks col-xl-3 text-center" style="padding-top: 130px">
+                    <input id="gno" type="number" step="1" min="1" oninput="validity.valid||(value='');" class="form-control d-block mx-auto" placeholder="輸入您猜的數字在這裡！">
+                    <a id="gbtn" class="btn btn-danger text-uppercase">猜</a>
+                </div>
+                <div id="hintpanel" class="blocks col-xl-4">
+                    <h2 class="text-center">提示</h2><br><br>
+                    <div class="hcontent d-block mx-auto text-center">
+                    </div>
+                    <h1 id="tsfd" class="text-center" style="color: blue" >提示太聰明</h1>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog" >
+                <div class="modal-content" style="background-color: #00a86b">
+                    <div class="modal-body">
+                        <h1 class="text-center">您贏了！</h1>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="clw" type="button" class="btn btn-danger d-block mx-auto" data-dismiss="modal">再玩一次</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModal2" role="dialog">
+            <div class="modal-dialog" >
+                <div class="modal-content" style="background-color: crimson">
+
+                    <div class="modal-body">
+                        <h1 class="text-center">您輸了！</h1>
+                        <h2 id="lost_msg" class="text-center"></h1>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="cll" type="button" class="btn btn-success d-block mx-auto" data-dismiss="modal">再試一次</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" defer></script>
+    <script src="js/guess-the-number.js" defer></script>
+</body>
+</html>
